@@ -1,0 +1,8 @@
+<h1>All Listings</h1>
+<ul>
+	<%@listings.each do |listing|%>
+		<li><%=listing.title%></li>
+	<% end %>
+</ul>
+
+<%= link_to "Sign Out", logout_path, method: :delete%>
