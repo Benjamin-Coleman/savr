@@ -1,0 +1,12 @@
+<h1>Bids for <%= @listing.title %></h1>
+<div class="bids-wrapper">
+<% @bids.each do |bid| %>
+ <div><%= bid.receiver.name %>
+ 	<%= form_tag('/accept', :method => :patch) do %>
+	<%= hidden_field_tag 'listing_id', bid.listing.id %>
+	<%= hidden_field_tag 'bid_id', bid.id %>
+	<%= submit_tag 'Accept Bid' %>
+	<% end %>
+ </div>
+ <% end %>
+ </div>

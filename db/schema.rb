@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731203833) do
+ActiveRecord::Schema.define(version: 20170801195837) do
 
   create_table "bids", force: :cascade do |t|
     t.integer "listing_id"
@@ -25,14 +25,14 @@ ActiveRecord::Schema.define(version: 20170731203833) do
     t.integer "quantity"
     t.string "cuisine"
     t.integer "listing_id"
-    t.string "type"
+    t.string "condition"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "listings", force: :cascade do |t|
     t.integer "location_id"
-    t.string "status"
+    t.string "status", default: "open"
     t.integer "donator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20170731203833) do
     t.integer "zip_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -60,9 +62,10 @@ ActiveRecord::Schema.define(version: 20170731203833) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
-    t.integer "karma"
+    t.integer "karma", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bio"
   end
 
 end

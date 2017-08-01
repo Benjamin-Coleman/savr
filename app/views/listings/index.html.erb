@@ -1,8 +1,8 @@
 <h1>All Listings</h1>
-<ul>
-	<%@listings.each do |listing|%>
-		<li><%=listing.title%></li>
-	<% end %>
-</ul>
 
-<%= link_to "Sign Out", logout_path, method: :delete%>
+	<%@listings.each do |listing|%>
+		<div><%=listing.updated_at.strftime("%D, %r")%> - <%=link_to listing.title, listing_path(listing)%></div>
+	<% end %>
+
+
+<%= link_to "Sign Out", logout_path, method: :delete%> | <%= link_to "User Home", user_path(session[:user_id])%>

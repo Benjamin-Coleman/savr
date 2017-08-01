@@ -1,7 +1,73 @@
-<h1><%= @user.name %></h1>
+<h1><%= @user.name %> | <span style="font-size: small">Karma: <%=@user.karma%></span></h1>
+
+<h2>
+	<% if session[:user_id] == @user.id %>
+		My Open Listings
+	<% else %>
+		<%= @user.name %>'s Open Listings
+	<% end %>
+</h2>
+
 <ul>
-<% @user.listings.each do |listing| %>
+<% @open_listings.each do |listing| %>
 	<li><%= link_to listing.title, listing_path(listing) %></li>
 <% end %>
 </ul>
+
+<% if @user.bio.present? %>
+<h3>User Bio</h3>
+<p><%= @user.bio %></p>
+<% end %>
+
+<% if session[:user_id] == @user.id %>
+	<h2>My Completed Listings</h2>
+	<% if !@completed_listings.blank?%>
+		<ul>
+		<% @completed_listings.each do |listing| %>
+			<li><%= link_to listing.title, listing_path(listing) %></li>
+		<% end %>
+		</ul>
+	<% else %>
+		<p>No bids completed.</p>
+	<% end %>
+
+	<h2>My Pending Bids</h2>
+	<% if !@open_bids.blank?%>
+		<ul>
+		<% @open_bids.each do |bid| %>
+			<li><%= link_to bid.listing.title, listing_path(bid.listing) %></li>
+		<% end %>
+		</ul>
+	<% else %>
+		<p>No bids currently pending.</p>
+	<% end %>
+
+
+	<h2>My Successful Bids</h2>
+	<% if !@accepted_bids.blank?%>
+		<ul>
+		<% @accepted_bids.each do |bid| %>
+			<li><%= link_to bid.listing.title, listing_path(bid.listing) %></li>
+		<% end %>
+		</ul>
+	<% else %>
+		<p>No bids currently successful.</p>
+	<% end %>
+
+
+	<h2>Lost Bids</h2>
+	<% if !@lost_bids.blank?%>
+		<ul>
+		<% @lost_bids.each do |bid| %>
+			<li><%= link_to bid.listing.title, listing_path(bid.listing) %></li>
+		<% end %>
+		</ul>
+	<% else %>
+		<p>No bids currently lost.</p>
+	<% end %>
+
+<% end %>
+
+<%=link_to 'View All Listings', listings_path %> | <%=link_to 'Add a Listing', new_listing_path %>
+
 
