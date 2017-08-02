@@ -1,8 +1,10 @@
 <h1><%=@listing.title%></h1>
-
+<% if session[:user_id] == @listing.donator_id || @listing.check_if_bidded %>
+<% else %>
 <%= form_tag(new_bid_path, :method => :post) do %>
 	<%= hidden_field_tag 'listing_id', @listing.id %>
 	<%= submit_tag 'Place Bid' %>
+<% end %>
 <% end %>
 
 <p><%=@listing.location.full_address%></p>

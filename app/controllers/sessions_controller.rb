@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
 	  	@user = user 
 
-	  	redirect_to root_path
+	  	redirect_to listings_path
 	  else 
 	  	flash[:error] = "Wrong username or password"
 	  	redirect_to login_path

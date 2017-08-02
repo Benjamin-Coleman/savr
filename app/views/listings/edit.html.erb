@@ -1,4 +1,4 @@
-<h1>Create Listing</h1>
+<h1>Edit Listing</h1>
 <%= form_for(@listing) do |f| %>
   <% if @listing.errors.any? %>
     <div id="error_explanation">
@@ -21,7 +21,7 @@
     <%= location_form.label :city %><br>
     <%= location_form.text_field :city %><br>
     <%= location_form.label :state %><br>
-    <%= location_form.select :state, options_for_select(@location.us_states, 'NY') %><br>
+    <%= location_form.select :state, options_for_select(@location.us_states, @location.state) %><br>
     <%= location_form.label :zip_code %><br>
     <%= location_form.number_field :zip_code %><br>
     <% end %>
@@ -47,7 +47,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Edit Listing' %>
   </div>
 
 <% end %>
