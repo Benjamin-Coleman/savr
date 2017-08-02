@@ -7,7 +7,14 @@
 			<div class="card">
 
 			<!--Card image-->
+			<!-- If no image has been uploaded use placeholder -->
+			<% if listing.image.file.nil? %>
 			<img class="card-img-top" src="/assets/listing-placeholder.jpg" alt="Card image cap">
+			<!-- Else use the uploaded image -->
+			<% else %>
+			<img class="card-img-top" src="<%=listing.image%>" alt="Card image cap">
+			<% end %>
+			
 
 			<!--Card content-->
 			<div class="card-block">

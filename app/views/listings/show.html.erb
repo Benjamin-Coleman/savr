@@ -1,4 +1,8 @@
+<% if @listing.image.file.nil? %>
 <div class="container-fluid full-width-header">
+<% else %>
+<div class="container-fluid full-width-header" style="background-image: url('<%= @listing.image %>')">
+<% end %>
 	<div class="container">
 		<h1><%=@listing.title%></h1>
 	</div>

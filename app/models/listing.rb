@@ -9,6 +9,7 @@ class Listing < ApplicationRecord
 	accepts_nested_attributes_for :foods, reject_if: :all_blank
 	accepts_nested_attributes_for :location, reject_if: :all_blank
 
+	mount_uploader :image, ListingImageUploader
 
 	def karma_points
 		total = 0
