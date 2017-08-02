@@ -18,9 +18,9 @@ class Listing < ApplicationRecord
 		total
 	end
 
-	def check_if_bidded
+	def check_if_bidded(current_user)
 		self.bids.any? do |bid| 
-			bid.receiver == session[:user_id]
+			bid.receiver.id == current_user
 		end
 	end
 end

@@ -1,53 +1,55 @@
-<h1>Edit Listing</h1>
-<%= form_for(@listing) do |f| %>
-  <% if @listing.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
-      <ul>
-      <% @listing.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<div class="container animated fadeIn">
+    <h1>Edit Listing</h1>
+    <%= form_for(@listing) do |f| %>
+      <% if @listing.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
+          <ul>
+          <% @listing.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <%= f.label :title %><br>
-  <%= f.text_field :title %>
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
 
-<div class="field">
-  <%= f.fields_for(:location) do |location_form| %>
-    <%= location_form.label :address %><br>
-    <%= location_form.text_field :address %><br>
-    <%= location_form.label :city %><br>
-    <%= location_form.text_field :city %><br>
-    <%= location_form.label :state %><br>
-    <%= location_form.select :state, options_for_select(@location.us_states, @location.state) %><br>
-    <%= location_form.label :zip_code %><br>
-    <%= location_form.number_field :zip_code %><br>
-    <% end %>
-  </div>
-  
-
-  <div class="field"><br>
-    <span>Food:</span><br>
-    <%= f.fields_for(:foods) do |foods_form| %>
-      <%= foods_form.label :name %>
-      <%= foods_form.text_field :name %>
-      <%= foods_form.label :quantity %>
-      <%= foods_form.number_field :quantity %>
-      <%= foods_form.label :cuisine %>
-      <select name="listing[foods_attributes][0][cuisine]" id="cuisine-select" %>
-      <% @cuisines.each do |c| %>
-        <option value='<%= c %>'><%= c %></option>
+    <div class="field">
+      <%= f.fields_for(:location) do |location_form| %>
+        <%= location_form.label :address %><br>
+        <%= location_form.text_field :address %><br>
+        <%= location_form.label :city %><br>
+        <%= location_form.text_field :city %><br>
+        <%= location_form.label :state %><br>
+        <%= location_form.select :state, options_for_select(@location.us_states, @location.state) %><br>
+        <%= location_form.label :zip_code %><br>
+        <%= location_form.number_field :zip_code %><br>
         <% end %>
-        </select>
-      <%= foods_form.label :condition %>
-      <%= foods_form.text_field :condition %>
+      </div>
+      
+
+      <div class="field"><br>
+        <span>Food:</span><br>
+        <%= f.fields_for(:foods) do |foods_form| %>
+          <%= foods_form.label :name %>
+          <%= foods_form.text_field :name %>
+          <%= foods_form.label :quantity %>
+          <%= foods_form.number_field :quantity %>
+          <%= foods_form.label :cuisine %>
+          <select name="listing[foods_attributes][0][cuisine]" id="cuisine-select" %>
+          <% @cuisines.each do |c| %>
+            <option value='<%= c %>'><%= c %></option>
+            <% end %>
+            </select>
+          <%= foods_form.label :condition %>
+          <%= foods_form.text_field :condition %>
+        <% end %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit 'Edit Listing' %>
+      </div>
+
     <% end %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit 'Edit Listing' %>
-  </div>
-
-<% end %>
+</div>

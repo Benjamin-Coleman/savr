@@ -1,41 +1,56 @@
-<h1><%=@listing.title%></h1>
-<% if session[:user_id] == @listing.donator_id || @listing.check_if_bidded %>
-<% else %>
-<%= form_tag(new_bid_path, :method => :post) do %>
-	<%= hidden_field_tag 'listing_id', @listing.id %>
-	<%= submit_tag 'Place Bid' %>
-<% end %>
-<% end %>
-
-<p><%=@listing.location.full_address%></p>
-<p style="font-size: small">Last Updated: <%=@listing.location.updated_at.strftime("%D, %r")%></p>
-
-<%@listing.foods.each do |food|%>
-	<div>
-		<p><strong><%=food.name%></strong></p>
-		<p><strong>Serves:</strong> <%=food.quantity%></p>
-		<p><strong>Cuisine:</strong> <%=food.cuisine%></p>
-		<p><strong>Condition:</strong> <%=food.condition%></p>
+<div class="container-fluid full-width-header">
+	<div class="container">
+		<h1><%=@listing.title%></h1>
 	</div>
-<%end%>
+</div>
 
-<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<%= @listing.location.latitude%>,<%=@listing.location.longitude%>&key=AIzaSyA1GjTrl1Y61pyMcvDcbgQxbMA-nuNENVE"></iframe>
+<div class="container animated fadeIn">
+<div class="row">
+	<div class="col-6 padding-tb">
+
+	<% if session[:user_id] == @listing.donator_id || @listing.check_if_bidded(current_user) %>
+	<% else %>
+	<%= form_tag(new_bid_path, :method => :post) do %>
+		<%= hidden_field_tag 'listing_id', @listing.id %>
+		<%= submit_tag 'Place Bid' %>
+	<% end %>
+	<% end %>
+
+
+		<h2><%=@listing.title%> <span>Last Updated: <%=@listing.location.updated_at.strftime("%D, %r")%></span></h2>
+		<%@listing.foods.each do |food|%>
+			<div>
+				<p><%=food.name%></p>
+				<p>
+				<strong>Serves:</strong> <%=food.quantity%><br>
+				<strong>Cuisine:</strong> <%=food.cuisine%><br>
+				<strong>Condition:</strong> <%=food.condition%><br>
+				</p>
+			</div>
+		<%end%>
+		
+		<p><%=@listing.location.full_address%></p>
+
+	</div>
 
 <% if session[:user_id] == @listing.donator_id %>
+<div class="col-6 padding-tb listing-show-bids">
 	<% if @listing.status != "completed" %>
 		<h2>Bids</h2>
 		<%= "No bids have been placed" if @listing.bids.blank?%>
 		<%@listing.bids.each do |bid|%>
 			<div>
 				<p>
-					<strong><%=link_to bid.receiver.name, user_path(bid.receiver) %></strong> | Karma: <%=bid.receiver.karma %>
+					<strong><%=link_to bid.receiver.name, user_path(bid.receiver) %></strong> | Karma: <%=bid.receiver.karma %><br>
+					
+					Bid Placed: <%=bid.updated_at.strftime("%D, %r") %>
 				</p>
-				<p>Bid Placed: <%=bid.updated_at.strftime("%D, %r") %></p>	
 				<%= form_tag('/accept', :method => :patch) do %>
 					<%= hidden_field_tag 'listing_id', bid.listing.id %>
 					<%= hidden_field_tag 'bid_id', bid.id %>
-					<%= submit_tag 'Accept Bid' %>
+					<%= submit_tag 'Accept Bid', class: "btn btn-primary btn-sm" %>
 				<% end %>
+
 			</div>
 		<%end%>
 	<% else %>
@@ -47,6 +62,12 @@
 			<p>Bid Placed: <%=@accepted_bid.updated_at.strftime("%D, %r") %></p>	
 		</div>
 	<% end %>
-
-
+	</div>
+	</div>
 <%end%>
+
+<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<%= @listing.location.latitude%>,<%=@listing.location.longitude%>&key=AIzaSyA1GjTrl1Y61pyMcvDcbgQxbMA-nuNENVE"></iframe>
+
+
+
+</div>

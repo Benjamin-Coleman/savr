@@ -1,8 +1,37 @@
-<h1>All Listings</h1>
+<div class="container animated fadeIn">
+	<h1>All Listings</h1>
+	<div class="row">
+		<%@listings.each do |listing|%>
+		<!--Card-->
+		<div class="col-4">
+			<div class="card">
 
-	<%@listings.each do |listing|%>
-		<div><%=listing.updated_at.strftime("%D, %r")%> - <%=link_to listing.title, listing_path(listing)%></div>
-	<% end %>
+			<!--Card image-->
+			<img class="card-img-top" src="/assets/listing-placeholder.jpg" alt="Card image cap">
 
+			<!--Card content-->
+			<div class="card-block">
+			    <!--Title-->
+			    <h4 class="card-title"><%= listing.title %> <span>Listed by: <%= link_to listing.donator.name, user_path(listing.donator) %></span></h4>
+			    <!--Text-->
+			    <p class="card-text">Created on <%=listing.updated_at.strftime("%D, %r")%></p>
+			    <p class="card-text"><%=listing.foods[0].name%></p>
+			    <p class="card-text">Serves: <%=listing.foods[0].quantity%></p>
+			    <%=link_to 'Learn More', listing_path(listing), class: 'btn btn-primary'%>
+			    <% if session[:user_id] == listing.donator_id || listing.check_if_bidded(current_user) %>
+			    <% else %>
+			    <%= form_tag(new_bid_path, :method => :post) do %>
+				<%= hidden_field_tag 'listing_id', listing.id %>
+				<%= submit_tag 'Place Bid', class: 'btn btn-primary' %>
+	 			<% end %>
+				<% end %>
+			</div>
 
-<%= link_to "Sign Out", logout_path, method: :delete%> | <%= link_to "User Home", user_path(session[:user_id])%>
+			</div>
+		</div>
+	<!--/.Card-->
+
+			
+		<% end %>
+		</div>
+</div>

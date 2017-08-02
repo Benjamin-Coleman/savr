@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   def open_bids
   	self.bids.select do |bid|
-  		bid.listing.status == "pending"
+  		bid.listing.status == "pending" || bid.listing.status == "open"
   	end
   end
 

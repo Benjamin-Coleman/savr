@@ -1,8 +1,24 @@
-<p style="color: red"><%= flash[:error] %></p>
-<%=form_for @user, url: login_path, method: :post do |f|%>
-<%= f.label "name" %><br>
-<%= f.text_field :name %><br>
-<%= f.label "password" %><br>
-<%= f.password_field :password %><br>
-<%= f.submit "Login" %>
-<% end %>
+<video poster="/assets/food_on_the_table.jpg" id="bgvid" playsinline autoplay muted loop>
+<source src="/assets/cooking_1.mp4" type="video/mp4">
+</video>
+<div class="faded_bg vertical-center">
+
+	<div class="jumbotron text-center signup-jumbo">
+
+		<h1>Sign In</h1>
+		<p style="color: red"><%= flash[:error] %></p>
+		<%=form_for @user, url: login_path, method: :post do |f|%>
+		<fieldset class="input-group">
+		<%= f.label "name" %>
+		<%= f.text_field :name %>
+		</fieldset>
+		<fieldset class="input-group">
+		<%= f.label "password" %>
+		<%= f.password_field :password %>
+		</fieldset>
+		<%= f.submit "Login", class: "btn btn-primary btn-lg"%>
+		<% end %>
+
+	</div>
+
+</div>
