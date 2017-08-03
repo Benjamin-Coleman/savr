@@ -4,6 +4,7 @@ class ListingsController < ApplicationController
   def new
   	@listing = Listing.new
     @location = @listing.build_location
+    @location.state = "NY"
     @food = @listing.foods.build
     @cuisines = CUISINES
   end
@@ -19,12 +20,14 @@ class ListingsController < ApplicationController
     if @location.save
       @listing.location = @location
     else
-      return render :new
+      flash[:message] = "Invalid Location Input"
+      return redirect_to new_listing_path
     end
     if @listing.save
       redirect_to listing_path(@listing)
     else
-      render :new
+      flash[:message] = "Invalid Listing Input"
+      redirect_to new_listing_path
     end
   end
 
@@ -46,12 +49,20 @@ class ListingsController < ApplicationController
       @listing.foods.first.destroy
       redirect_to listing_path(@listing)
     else
-      render :edit
+      flash[:message] = "Invalid Listing Input"
+      return redirect_to edit_listing_path(@listing)
     end
   end
 
   def index
-    @listings = Listing.where(:status => ["pending", "open"])
+    # @listings = Listing.where(:status => ["pending", "open"])
+    # binding.pry
+    if params['listing']
+      @listings = Listing.search(params['listing'][:cuisine])
+    else
+      @listings = Listing.where(:status => ["pending", "open"])
+    end
+    @cuisines = CUISINES
   end
 
   private

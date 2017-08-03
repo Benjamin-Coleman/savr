@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def confirm_user
-      redirect_to login_path flash[:error] = "You do not have permission to view that page" unless session[:user_id] == params[:id]
+      redirect_to login_path flash[:error] = "You do not have permission to view that page" unless session[:user_id] == params[:id].to_i
   end
 
   def current_user

@@ -24,4 +24,10 @@ class Listing < ApplicationRecord
 			bid.receiver.id == current_user
 		end
 	end
+
+	def self.search(search)
+		Listing.all.select do |listing|
+			listing.foods[0].cuisine == search
+		end
+	end
 end

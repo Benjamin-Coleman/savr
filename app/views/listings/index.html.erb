@@ -1,6 +1,18 @@
 <div class="container animated fadeIn">
-	<h1>All Listings</h1>
+	<h1 class="basic-page-headline">All Listings</h1>
+	<h3 class="search-title">Seach by Cuisine</h3>
+	<%= form_tag(listings_path, method: :get) do %>
+        <select name="listing[cuisine]" %>
+          <% @cuisines.each do |c| %>
+            <option value='<%= c %>'><%= c %></option>
+            <% end %>
+        </select>
+		<%= submit_tag 'Search', class: 'btn btn-primary', style: 'margin-bottom: 5px; margin-top: 5px;' %>
+	<% end %>
 	<div class="row">
+		<% if @listings.blank? %>
+			<h3 style="margin-top: 2em">Sorry, there are no listings matching your search.</h3>
+		<% end %>
 		<%@listings.each do |listing|%>
 		<!--Card-->
 		<div class="col-4">

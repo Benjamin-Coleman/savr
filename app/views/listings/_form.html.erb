@@ -1,0 +1,89 @@
+    <%= form_for(@listing) do |f| %>
+      <% if @listing.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
+          <ul>
+          <% @listing.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+    <%if !!flash[:message]%>
+      <div class="container col-8">
+         <div class="alert alert-danger" role="alert"><%=flash[:message]%></div>
+      </div>
+    <% end %>
+
+      <div class="container col-8 form-box">
+        <div class="row">
+            <div class="field col-12">
+                <%= f.label :title %><br>
+                <%= f.text_field :title, class: "form-control form-control-md" %>
+            </div>
+        </div>
+            <%= f.fields_for(:location) do |location_form| %>
+        <div class="row">
+            <div class="field col-6">        
+              <%= location_form.label :address %>
+              <%= location_form.text_field :address, class: "form-control form-control-md" %>
+            </div>
+
+            <div class="field col-6">
+              <%= location_form.label :city %>
+              <%= location_form.text_field :city, class: "form-control form-control-md" %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="field col-6">
+              <%= location_form.label :state %>
+              <%= location_form.select :state, options_for_select(@location.us_states, @location.state), class: "form-control form-control-md" %>
+              </div>
+              <div class="field col-6">
+              <%= location_form.label :zip_code %>
+              <%= location_form.number_field :zip_code, class: "form-control form-control-md" %>
+              </div>
+              <% end %>
+        </div>
+
+      </div>
+      
+      <div class="container col-8 form-box">
+            <h3>Food</h3>
+            <%= f.fields_for(:foods) do |foods_form| %>
+          <div class="row">
+            <div class="field col-12">
+              <%= foods_form.label 'Description' %>
+              <%= foods_form.text_area :name, class: "form-control form-control-md" %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field col-4">
+              <%= foods_form.label 'Feeds' %>
+              <%= foods_form.number_field :quantity, class: "form-control form-control-md" %>
+            </div>
+            
+            <div class="field col-4">
+              <%= foods_form.label :cuisine %>
+              <select name="listing[foods_attributes][0][cuisine]" id="cuisine-select" %>
+              <% @cuisines.each do |c| %>
+                <option value='<%= c %>' <%if @listing.foods.first.cuisine == c %>selected="selected"<% end%>><%= c %></option>
+                <% end %>
+              </select>
+            </div>
+
+            <div class="field col-4">
+              <%= foods_form.label :condition %>
+              <%= foods_form.text_field :condition, class: "form-control form-control-md" %>
+            </div>
+          </div>
+            <% end %>
+          <p>Add an image for your listing.</p>
+          <%= f.file_field :image %>
+          <div class="actions">
+            <%= f.submit 'Create Listing', class: 'btn btn-primary btn-lg'%>
+          </div>
+
+        <% end %>
+      </div>

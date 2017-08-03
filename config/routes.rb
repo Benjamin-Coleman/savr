@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'users/:id',  to: "users#show", as: 'user'
   post 'users/create', to: "users#create"
   patch 'users/:id', to: "users#update", as: 'user_update'
-  get 'users/:id/edit', to: "users#edit"
+  get 'users/:id/edit', to: "users#edit", as: 'user_edit'
 
   get 'login', to: "sessions#new"
   post 'login', to: "sessions#create"

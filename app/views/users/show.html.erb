@@ -1,6 +1,6 @@
 <div class="container animated fadeIn">
 	<h1><%= @user.name %> | <span style="font-size: small">Karma: <%=@user.karma%></span></h1>
-
+	<p><%= link_to 'Edit User', user_edit_path(@user) if session[:user_id] == @user.id%></p>
 	<h2>
 		<% if session[:user_id] == @user.id %>
 			My Open Listings

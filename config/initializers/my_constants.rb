@@ -1,1 +1,1 @@
-    CUISINES = ['Italian', 'Chinese', 'Pizza', 'Mexican', 'Thai', 'Indian'].freeze
+    CUISINES = ['Italian', 'Chinese', 'Pizza', 'Mexican', 'Thai', 'Indian', 'American', 'Seafood', 'Fast Food', 'Korean', 'Mediterranean', 'African', 'Greek', 'Cuban', 'Japanese', 'Other'].freeze

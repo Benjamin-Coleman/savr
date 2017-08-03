@@ -12,12 +12,14 @@
 <div class="row">
 	<div class="col-6 padding-tb">
 
-	<% if session[:user_id] == @listing.donator_id || @listing.check_if_bidded(current_user) %>
-	<% else %>
-	<%= form_tag(new_bid_path, :method => :post) do %>
-		<%= hidden_field_tag 'listing_id', @listing.id %>
-		<%= submit_tag 'Place Bid' %>
-	<% end %>
+	<% if @listing.check_if_bidded(current_user) %>
+	<% elsif session[:user_id] == @listing.donator_id %>
+		<%= link_to 'Edit Listing', edit_listing_path(@listing), class: "btn btn-primary" %>
+	<% else%>
+		<%= form_tag(new_bid_path, :method => :post) do %>
+			<%= hidden_field_tag 'listing_id', @listing.id %>
+			<%= submit_tag 'Place Bid', class: "btn btn-primary" %>
+		<% end %>
 	<% end %>
 
 
