@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   		session[:user_id] = @user.id
   		redirect_to listings_path
   	else
-  		flash[:message] = "You did it wrong"
+  		flash[:message] = "Invalid name/password. Please try again."
   		render :new
   	end
 

@@ -1,0 +1,325 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ /*green #39b54a*/
+/*orange #ff835d*/
+ /*dark orange #f1592a*/
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+ /*Typography*/
+
+body {
+    font-family: 'Raleway', sans-serif;
+    color: #555;
+    font-weight: 200;
+    padding-bottom: 30px;
+}
+
+.jumbotron .logo {
+    font-size: 4.5em;
+}
+
+.logo {
+    font-family: 'Reem Kufi', sans-serif;
+}
+
+.logo-img{
+    width: 75%;
+}
+
+ h1 {
+    font-family: 'Oswald', sans-serif;
+    color: #333;  
+    font-size: 3em;
+ }
+
+h2{
+    font-weight: 300;
+    font-family: 'Oswald', sans-serif;
+    color: #333;  
+    letter-spacing: 1px;
+}
+
+h4 {
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+}
+
+.search-title {
+    font-size: 1.1em;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    margin-top: 10px; 
+}
+
+video { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    background: url('/assets/food_on_the_table.jpg') no-repeat;
+  background-size: cover;
+  transition: 1s opacity;
+}
+
+.faded_bg {
+	background: rgba(0, 0, 0, .70);
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -99;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.vertical-center {
+	min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+	min-height: 100vh; /* These two lines are counted as one :-)       */
+	justify-content: center;	
+	display: flex;
+	align-items: center;
+}
+
+.padding-tb {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.home-jumbo {
+	background-color: rgba(255, 255, 255, .8);
+	font-size:2em;
+}
+
+.home-jumbo p {
+	font-size:.6em;
+}
+
+.signup-jumbo {
+	background-color: rgba(255, 255, 255, .8);
+	font-size:1em;
+}
+
+.basic-page-headline {
+    margin-top:25px;
+    margin-bottom:25px;
+}
+
+/* Buttons */
+
+.btn-primary{
+    background-color: #39b54a;
+    border-color: #39b54a;
+    cursor: pointer;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 1.5px;
+}
+
+.btn-primary.orange{
+    background-color: #ff835d;
+    border-color: #ff835d;
+}
+
+.btn-primary.orange:hover{
+    background-color: #f1592a;
+    border-color: #f1592a;
+}
+
+.btn-primary:hover{
+    background-color: #0c871d;
+    border-color: #0c871d;
+}
+
+.navbar-light .navbar-nav .btn-add-listing{
+    background-color: #ff835d;
+    border-color: #ff835d;
+    color: white;
+    margin-top: 3px;
+}
+
+.navbar-light .navbar-nav .btn-add-listing:hover{
+    background-color: #f1592a;
+    border-color: #f1592a;
+    color: white;
+}
+
+input[type=submit] {
+    margin-top: 10px;
+}
+
+select {
+    height: 33px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.form-box {
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 15px;
+}
+
+.new_user input {
+    width: 100%;
+}
+
+.form-box select {
+    width: 100%;
+}
+
+.form-box .row {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+form-control-md {
+    padding: .6rem 1.0rem;
+    font-size: 1.2rem;
+    border-radius: .3rem;
+}
+
+/*Card*/
+
+.card {
+    margin-bottom: 20px;
+}
+
+.card-img-top{
+    height: 250px;
+}
+
+.card-title span, h2 span, h1 span {
+    font-size: .5em;
+    font-family: 'Raleway', sans-serif;
+    text-transform: initial;
+}
+
+h2 span {
+    font-size: .4em;
+    letter-spacing: initial;
+}
+
+/*header*/
+
+.full-width-header{
+    height: 300px;
+    background-image: url('listing-header.jpg');
+    background-size: cover;
+    background-position: 50%;
+    display: flex;
+    align-items: center;
+    background-attachment: fixed;
+}
+
+.full-width-header h1{
+    color: white;
+    background-color: rgba(255, 131, 93, .8);
+    border-radius:5px;
+    padding: 20px;
+    display: inline-block;
+    font-size:5em;
+}
+
+/*listing show specific*/
+
+.listing-show-bids input[type=submit] {
+    margin-top: 0;
+}
+
+.listing-show-bids p {
+    margin-bottom: .3em;
+}
+
+.listing-show-bids > div {
+    margin-bottom: 1.2em;
+}
+
+/* Profile Page */
+
+.profile-wrapper{
+    max-width: 400px;
+    border: 1px;
+}
+.user-bio a {
+    font-size:.8em;
+}
+
+.card-header h5.mb-0 a{
+    font-weight: 300;
+    font-family: 'Oswald', sans-serif;
+    /*color: #333;*/
+    letter-spacing: 1px;
+    font-size: 1.35em;
+    &:hover{
+        text-decoration: none;
+    }
+    &:focus{
+        text-decoration: none;
+    }
+}
+
+.bid-entry {
+    margin-bottom:10px;
+}
+
+.bid-entry a{
+    font-size: 1.6em;
+}
+
+
+#accordion .card, #accordion_2 .card {
+    border: none;
+    background: none;
+}
+
+#accordion .card .card-header, #accordion_2 .card .card-header {
+    background: none;
+}
+
+.badge-pill {
+    font-size: .6em;
+}
+
+.bid-date{
+    display: inline-block;
+    background: #39b54a;
+    width: 46px;
+    text-align: center;
+    line-height: 1.2em;
+    color: white;
+    padding: 4px;
+    font-size: 1em;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+    margin-right: 5px;
+    border-radius: 3px;
+}

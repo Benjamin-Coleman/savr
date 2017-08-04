@@ -12,21 +12,25 @@
 <div class="row">
 	<div class="col-6 padding-tb">
 
-	<% if @listing.check_if_bidded(current_user) %>
-	<% elsif session[:user_id] == @listing.donator_id %>
-		<%= link_to 'Edit Listing', edit_listing_path(@listing), class: "btn btn-primary" %>
-	<% else%>
-		<%= form_tag(new_bid_path, :method => :post) do %>
-			<%= hidden_field_tag 'listing_id', @listing.id %>
-			<%= submit_tag 'Place Bid', class: "btn btn-primary" %>
-		<% end %>
-	<% end %>
+	
 
 
 		<h2><%=@listing.title%> <span>Last Updated: <%=@listing.location.updated_at.strftime("%D, %r")%></span></h2>
 		<%@listing.foods.each do |food|%>
 			<div>
 				<p><%=food.name%></p>
+				<p>	
+					<% if @listing.check_if_bidded(current_user) %>
+					<% elsif session[:user_id] == @listing.donator_id %>
+						<%= link_to 'Edit Listing', edit_listing_path(@listing), class: "btn btn-primary" %> 
+						<%= link_to 'Delete Listing', delete_listing_path(@listing),method: :delete, data: {confirm: "Are you sure you want to delete your listing?"}, class: 'btn orange btn-primary' %>
+					<% else%>
+						<%= form_tag(new_bid_path, :method => :post) do %>
+						<%= hidden_field_tag 'listing_id', @listing.id %>
+						<%= submit_tag 'Place Bid', class: "btn btn-primary" %>
+						<% end %>
+					<% end %>
+				</p>
 				<p>
 				<strong>Serves:</strong> <%=food.quantity%><br>
 				<strong>Cuisine:</strong> <%=food.cuisine%><br>

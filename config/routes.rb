@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  delete 'listings/:id', to: 'listings#destroy', as: 'delete_listing'
+
   root "static#index"
   resources :ratings, only: [:new, :create]
   resources :listings do

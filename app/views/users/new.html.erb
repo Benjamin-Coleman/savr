@@ -4,8 +4,8 @@
 <div class="faded_bg vertical-center">
 
 	<div class="jumbotron text-center signup-jumbo">
-		
 		<h1>Sign Up for Savr</h1>
+		<p style="color: red"><%= flash[:message] %></p> 
 		<%=form_for(@user, url: users_create_path) do |f|%><br>
 		<%=f.label "Name" %><br>
 		<%=f.text_field :name %><br>
